@@ -53,6 +53,14 @@
       <version>${spring-boot.version}</version>
       <scope>runtime</scope>
     </dependency>
+    
+     <dependency>
+        <groupId>org.projectlombok</groupId>
+        <artifactId>lombok</artifactId>
+        <version>1.18.24</version>
+        <scope>provided</scope>
+    </dependency>
+    
      <!-- Dependência para JUnit 5 -->
     <dependency>
       <groupId>org.junit.jupiter</groupId>
@@ -72,18 +80,25 @@
   <!-- Plugin para o Spring Boot -->
   <build>
     <plugins>
+
+      <!-- Plugin para compilar usando Java 17 -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
-        <version>3.10.1</version>
+        <version>3.10.1</version> <!-- Versão recente -->
         <configuration>
           <source>17</source>
-          <target>17</target> 
-          <dependenciesToScan>
-            <dependency>org.junit.jupiter</dependency>
-          </dependenciesToScan>
+          <target>17</target>
         </configuration>
       </plugin>
-    </plugins>
+
+      <!-- Plugin para rodar o Spring Boot -->
+      <plugin>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+        <version>${spring-boot.version}</version> <!-- Usa a mesma versão definida lá em <properties> -->
+      </plugin>
+
+  </plugins>
   </build>
 </project>
