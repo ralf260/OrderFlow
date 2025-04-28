@@ -1,0 +1,7 @@
+# Ignore files that are not needed in Docker image
+target/
+*.iml
+.idea/
+.vscode/
+Dockerfile
+docker-compose.yml

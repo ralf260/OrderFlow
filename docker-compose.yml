@@ -1,0 +1,44 @@
+version: '3'
+
+services:
+  rabbitmq:
+    image: rabbitmq:3-management
+    ports:
+      - "15672:15672"
+      - "5672:5672"
+    environment:
+      - RABBITMQ_DEFAULT_USER=guest
+      - RABBITMQ_DEFAULT_PASS=guest
+    networks:
+      - orderflow-net
+
+  serviço-produto:
+    build: ./serviço-produto
+    ports:
+      - "8081:8081"
+    depends_on:
+      - rabbitmq
+    networks:
+      - orderflow-net
+
+  serviço-usuario:
+    build: ./serviço-usuario
+    ports:
+      - "8082:8082"
+    depends_on:
+      - rabbitmq
+    networks:
+      - orderflow-net
+
+  serviço-pedido:
+    build: ./serviço-pedido
+    ports:
+      - "8083:8083"
+    depends_on:
+      - rabbitmq
+    networks:
+      - orderflow-net
+
+networks:
+  orderflow-net:
+    driver: bridge

@@ -1,0 +1,31 @@
+
+### 2. **.gitignore**
+
+O arquivo `.gitignore` é essencial para evitar o commit de arquivos temporários ou de configuração local, como `target/` (diretório de compilação do Maven), configurações IDE e outros arquivos desnecessários.
+
+Aqui está um exemplo básico para projetos **Java** com **Maven**:
+
+```bash
+# Maven
+target/
+
+# Eclipse
+.project
+.classpath
+.settings/
+
+# IntelliJ IDEA
+.idea/
+*.iml
+
+# VS Code
+.vscode/
+
+# Logs
+*.log
+
+# MacOS
+.DS_Store
+
+# Windows
+Thumbs.db
