@@ -1,19 +1,22 @@
-version: '3'
+version: '3.8'
 
 services:
   rabbitmq:
     image: rabbitmq:3-management
+    container_name: rabbitmq
     ports:
       - "15672:15672"
       - "5672:5672"
     environment:
-      - RABBITMQ_DEFAULT_USER=guest
-      - RABBITMQ_DEFAULT_PASS=guest
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
     networks:
       - orderflow-net
 
-  serviço-produto:
-    build: ./serviço-produto
+  produto-service:
+    build:
+      context: ./servico-produto
+    container_name: produto-service
     ports:
       - "8081:8081"
     depends_on:
@@ -21,8 +24,10 @@ services:
     networks:
       - orderflow-net
 
-  serviço-usuario:
-    build: ./serviço-usuario
+  usuario-service:
+    build:
+      context: ./servico-usuario
+    container_name: usuario-service
     ports:
       - "8082:8082"
     depends_on:
@@ -30,8 +35,10 @@ services:
     networks:
       - orderflow-net
 
-  serviço-pedido:
-    build: ./serviço-pedido
+  pedido-service:
+    build:
+      context: ./servico-pedido
+    container_name: pedido-service
     ports:
       - "8083:8083"
     depends_on:
